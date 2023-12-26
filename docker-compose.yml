@@ -1,0 +1,37 @@
+version: '3'
+services:
+  emqx:
+    image: emqx/emqx:5.0.17
+    environment:
+      - EMQX_LOADED_PLUGINS="emqx_recon,emqx_retainer,emqx_management,emqx_dashboard,emqx_exhook,emqx_web_hook"
+    ports:
+      - 18083:18083
+      - 8083:8083
+      - 8084:8084
+      - 1883:1883/udp
+    # volumes: 
+    #   - ./emqx/cluster-override.conf:/opt/emqx/data/configs/cluster-override.conf:rw 
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+    # emqx-broker:
+    #   image: emqx/emqx:5.2
+    #   container_name: emqx
+    #   healthcheck:
+    #     test: [ "CMD", "/opt/emqx/bin/emqx", "ctl", "status" ]
+    #     interval: 5s
+    #     timeout: 25s
+    #     retries: 5
+    #   extra_hosts:
+    #     - "host.docker.internal:host-gateway"
+    #   # limit resources in terms of memory
+    #   mem_limit: 4g
+    #   ports:
+    #     - "1883:1883"
+    #     - "1884:1884"
+    #     - "8083:8083"
+    #     - "8883:8883"
+    #     - "8084:8084"
+    #     - "18083:18083"
+    #   environment:
+    #     - EMQX_NAME=emqx
+    #     - EMQX_HOST=
